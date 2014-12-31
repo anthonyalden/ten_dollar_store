@@ -1,0 +1,11 @@
+<h3 id="tenstore">The Ten Dollar Store </h3>
+
+<h2 id="title">Edit <%= @item.item_tag%></h2>
+
+<nav>
+
+  <h3><%= link_to "Delete #{@item.item_tag}", item_path(@item), method: :delete, data: {confirm: "Are you sure you want to delete #{@item.item_tag}?"} %></h3>
+</nav>
+
+<%= render "items/form", object: @item %>
+

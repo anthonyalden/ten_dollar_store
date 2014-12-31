@@ -1,0 +1,34 @@
+<%= form_for @item do |f| %>
+  <div>
+    <%= f.label :item_tag %>
+    <%= f.text_area :item_tag , size: "35x3" %><br><br>
+
+    <%= f.label :description %>
+    <%= f.text_area :description, size: "35x3" %><br><br>
+
+    <%= f.label :photo %>
+    <%= f.text_field :photo %><br><br>
+
+    <%= f.label :category %>
+    <%= f.text_field :category %><br><br>
+
+
+    <%= f.label :search_tags %>
+    <%= f.text_field :search_tags %><br><br>
+
+    <%= f.label :shipping_cost %>
+    <%= f.text_field :shipping_cost %><br><br>  
+
+    <%= f.label :username %>
+    <%= f.collection_select :seller, Seller.all, :id, :username %>
+  </div>
+  
+    
+  <div>
+    <%= f.submit %>
+  </div>
+
+  
+<% end %> 
+<div>
+

@@ -1,0 +1,19 @@
+<h3 id="tenstore">The Ten Dollar Store </h3>
+<h1 id="title"><%= @seller.username %></h1>
+<p>This is <%= @seller.username %>'s profile page.</p>
+
+
+	<ul>
+		<% @seller.items.each do |item| %>
+			<li>
+				
+			<%= link_to item.username, item %> (<%= link_to "Edit", edit_item_path(item) %>)
+				
+			</li>
+		<% end %>
+	</ul>
+
+<nav>
+  <%= link_to "Edit #{@seller.username}'s Information", edit_seller_path(@seller) %>
+  <%= link_to "Delete #{@seller.username}", seller_path(@seller), method: :delete, data: {confirm: "Are you sure you want to delete #{@seller.username}?"} %>
+</nav>

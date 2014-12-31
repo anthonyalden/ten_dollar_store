@@ -1,0 +1,9 @@
+<h3 id="tenstore">The Ten Dollar Store </h3>
+<h1 id="title">All Sellers</h1>
+<ul>
+  <% @sellers.each do |seller| %>
+    <li>
+      <%= link_to seller.username, seller %> (<%= link_to "Edit", edit_seller_path(seller) %>)
+    </li>
+  <% end %>
+</ul>

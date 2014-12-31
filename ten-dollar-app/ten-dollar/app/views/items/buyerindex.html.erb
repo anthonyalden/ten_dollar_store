@@ -1,0 +1,25 @@
+<h3 id="tenstore">The Ten Dollar Store </h3>
+
+<%= form_tag({controller: "items", action: "index"}, method: "get") do %>
+    <%= label_tag(:q, "Search for:") %>
+    <%= text_field_tag(:q, nil, :size=>100) %>
+    <%= submit_tag("Search") %>
+<% end %>
+<h4 id="search-msg">Leave search box empty and press <b>Search</b> to display all items for sale.</h4>
+
+<h3 id="title">Items for Sale:</h3>
+
+
+
+<ul>
+  <% @items.each do |item| %>
+    <li>
+      <b>Item Tag:</b> <%= link_to item.item_tag, item %> 
+      <b>description:</b> <%= item.description %> <br>
+      <b>Photo:</b> <%= item.photo %> 
+      <b>Category:</b> <%= item.category %> <br>
+      <b>Search Tags:</b> <%= item.search_tags %> 
+      <b>Shipping Cost:</b> <%= item.shipping_cost %>
+    </li><br>
+  <% end %>
+</ul>
