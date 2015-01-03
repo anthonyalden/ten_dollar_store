@@ -10,7 +10,6 @@
 <h3 id="title">Items for Sale:</h3>
 
 
-
 <ul>
   <% @items.each do |item| %>
     <li>
@@ -20,7 +19,7 @@
       <b>Category:</b> <%= item.category %> <br>
       <b>Search Tags:</b> <%= item.search_tags %> 
       <b>Shipping Cost:</b> <%= item.shipping_cost %>
-      <b>Seller:</b> Username: <%= item.seller.username%> Full Name: <%= item.seller.first_name%> <%= item.seller.last_name%><%= link_to "Edit", edit_item_path(item) %>
+      <b>Seller:</b> Username: <%= item.seller.username%> Full Name: <%= item.seller.first_name%> <%= item.seller.last_name%>     <span><%= link_to "Edit", edit_item_path(item),{:style=>'color:red', :class => "css_class"} %></span>
     </li><br>
   <% end %>
 </ul>

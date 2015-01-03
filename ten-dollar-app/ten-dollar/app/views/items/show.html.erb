@@ -6,4 +6,5 @@
 <b>Category:</b> <%= @item.category %> </p>
 <b>Search Tags:</b> <%= @item.search_tags%> <br><br>
 <b>Shipping Cost:</b><%= number_to_currency(@item.shipping_cost) %> </p>
+<%= link_to "Return to Items List", items_path, {:style=>'color:red;', :class => "css_class"} %>
 

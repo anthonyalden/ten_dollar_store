@@ -1,4 +1,8 @@
 <h3 id="tenstore">The Ten Dollar Store </h3>
 <h1 id="title">Edit <%= @seller.username %></h1>
 
+<% if flash[:notice] %>
+    <div class = "flash_msg"><%= flash[:notice] %></div>
+  <% end %>
+
 <%= render "sellers/form", object: @seller %>

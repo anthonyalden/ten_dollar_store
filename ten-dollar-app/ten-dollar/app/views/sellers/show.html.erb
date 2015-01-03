@@ -1,19 +1,20 @@
 <h3 id="tenstore">The Ten Dollar Store </h3>
-<h1 id="title"><%= @seller.username %></h1>
-<p>This is <%= @seller.username %>'s profile page.</p>
+<h3 id="title">User Name:  <%= @seller.username %></h3>
+<p>This is <b><%= @seller.first_name %> <%= @seller.last_name %>'s</b> Items for Sale:</p>
 
 
 	<ul>
 		<% @seller.items.each do |item| %>
 			<li>
 				
-			<%= link_to item.username, item %> (<%= link_to "Edit", edit_item_path(item) %>)
+			<%= link_to item.item_tag, item %> (<%= link_to "Edit", edit_item_path(item) %>)
 				
 			</li>
 		<% end %>
 	</ul>
 
 <nav>
-  <%= link_to "Edit #{@seller.username}'s Information", edit_seller_path(@seller) %>
-  <%= link_to "Delete #{@seller.username}", seller_path(@seller), method: :delete, data: {confirm: "Are you sure you want to delete #{@seller.username}?"} %>
+  <%= link_to "Edit #{@seller.first_name} #{@seller.last_name}'s Information", edit_seller_path(@seller) %><br>
+  <%= link_to "Delete #{@seller.first_name} #{@seller.last_name}", seller_path(@seller), method: :delete, data: {confirm: "Are you sure you want to delete #{@seller.username}?"} %><br>
+  <%= link_to "Cancel", sellers_path, {:style=>'color:red;', :class => "css_class"} %>
 </nav>

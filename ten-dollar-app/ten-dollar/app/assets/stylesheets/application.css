@@ -17,14 +17,37 @@ form div {
   margin: 1em 0;
 }
 
-body{
+body {
 	background-color: beige;
 	background-image: url("ten_dollar_bill.jpg");
 	background-repeat: no-repeat;
-	background-size: 300px;
+	background-size: 150px;
+
 	background-position: center top;
+    background-clip: border-box;
+    transition: background-size 1.2s;
+    -webkit-transition: background-size 1.5s;
+    transition-timing-function: cubic-bezier(.07,1.41,.82,1.41);
+    
+    text-decoration: none;
+    
+
+}
 
 
+
+body:hover {
+    background-size: 300px;
+
+}
+
+.flash_msg{
+	font-size: 25px;
+	color: red;
+}
+
+:link{
+	color: red;
 }
 
 #tenstore{

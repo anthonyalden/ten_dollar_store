@@ -1,6 +1,6 @@
 <%= form_for @seller do |f| %>
   <div>
-    <%= f.label :username %>
+    <%= f.label "User Name"%>
     <%= f.text_field :username %>
 
     <%= f.label :password %>
@@ -20,6 +20,7 @@
 
   </div>
   <div>
-    <%= f.submit %>
+    <%= f.submit %> <br>
+    <%= link_to "Cancel", sellers_path , {:style=>'color:red;', :class => "css_class"} %>
   </div>
 <% end %>

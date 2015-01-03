@@ -3,7 +3,9 @@
 <ul>
   <% @sellers.each do |seller| %>
     <li>
-      <%= link_to seller.username, seller %> (<%= link_to "Edit", edit_seller_path(seller) %>)
+      <%= link_to seller.username, seller %> 
     </li>
   <% end %>
 </ul>
+
+<%= link_to "Return to Items List", items_path, {:style=>'color:red;', :class => "css_class"} %>

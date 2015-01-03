@@ -15,6 +15,7 @@ class SellersController < ApplicationController
 
 	def new
 		# this makes a new one
+		flash[:notice] = nil
 		@seller = Seller.new
 	end
 
@@ -22,19 +23,22 @@ class SellersController < ApplicationController
 		#the params object has some methods like .requre and .permit.  The permit says what attributes can be saved
 		# :seller is from the model
 		# @seller = seller.new(params.require(:seller).permit(:name, :roast, :origin, :quantity))
-		@seller = Seller.new (seller_params)
-		if @seller.save 
-			# if save is ok go back to index.html
-			redirect_to sellers_path
-		else
-			# if not successful go back to new page to reenter the data again
-			render "new"
-		end
+				@seller = Seller.new (seller_params)
+				if @seller.save 
+					# if save is ok go back to index.html
+					flash[:notice] = nil
+					redirect_to sellers_path
+				else
+					# if not successful go back to new page to reenter the data again
+					flash[:notice] = "This User Name is already used by someone else.  Please choose another User Name."
+					render "new"
+				end
 	end
 
 	def edit
 		# action for retrieving a specific been
 		# this is the same code you use for the show action
+		flash[:notice] = nil
 		@seller = Seller.find(params[:id])
 
 	end
@@ -46,6 +50,7 @@ class SellersController < ApplicationController
 		if @seller.update_attributes(seller_params)
 			redirect_to sellers_path
 		else
+			flash[:notice] = "This User Name is already used by someone else.  Please choose another User Name."
 			render "edit"
 		end
 	end
