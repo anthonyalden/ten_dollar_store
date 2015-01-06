@@ -18,30 +18,40 @@ form div {
 }
 
 body {
-	background-color: beige;
-	background-image: url("ten_dollar_bill.jpg");
-	background-repeat: no-repeat;
-	background-size: 150px;
-
-	background-position: center top;
-    background-clip: border-box;
-    transition: background-size 1.2s;
-    -webkit-transition: background-size 1.5s;
-    transition-timing-function: cubic-bezier(.07,1.41,.82,1.41);
-    
-    text-decoration: none;
+	font-family: Helvetica, sans-serif;
+	  
+	background: -webkit-repeating-radial-gradient(#EFF70A, #A19443);
+	
     
 
 }
 
+.bill{
+	background-image: url("ten_dollar_bill.jpg");
+	background-repeat: no-repeat;
+	background-size: 300px;
+	height: 125px;
+	width: 300px;
+	box-shadow: 10px 10px 5px #5E5959;
+	-webkit-box-shadow: 10px 10px 5px #5E5959;
 
+	position: relative;
+	margin-left: 465px;
+	margin-bottom: -85px;
+    clip: border-box;
+    transition: background-size 1.2s;
+    -webkit-transition: background-size 1.5s;
+    transition-timing-function: cubic-bezier(.07,1.41,.82,1.41);
+   
+}
 
-body:hover {
-    background-size: 300px;
+div:hover {
+    background-size: 400px;
 
 }
 
 .flash_msg{
+	display: inline;
 	font-size: 25px;
 	color: red;
 }
@@ -53,14 +63,17 @@ body:hover {
 #tenstore{
 	position: relative;
 	margin-top: 100px;
-	margin-left: 540px;
+	margin-left: 525px;
 }
 
 #title {
-	margin-top: 1px;
+	margin-top: -20px;
+	margin-bottom: -10px;
 }
 
 #search-msg{
 	color: red;
 	text-indent: 80px;
+	margin-top: -2px;
+
 }

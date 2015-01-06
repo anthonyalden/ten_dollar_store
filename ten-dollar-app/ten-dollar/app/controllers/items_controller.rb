@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
 	def index
 		# retrieves ALL the beans in our database
 
-			  is_seller = false
+			  is_seller = true
 		      @items = Item.where(:search_tags => /.*#{params[:q]}.*/i)
 			  if is_seller == false
 			  	render "buyerindex"
@@ -27,6 +27,7 @@ class ItemsController < ApplicationController
 
 	def new
 		# this makes a new one
+		flash[:alert] = nil
 		@item = Item.new
 	end
 
@@ -35,18 +36,24 @@ class ItemsController < ApplicationController
 		# :item is from the model
 		# @item = item.new(params.require(:item).permit(:name, :roast, :origin, :quantity))
 		@item = Item.new (item_params)
-		if @item.save 
-			# if save is ok go back to index.html
-			redirect_to items_path
+
+		if @item.save
+		   flash[:alert] = nil
+		   redirect_to items_path
 		else
-			# if not successful go back to new page to reenter the data again
+			flash[:alert] = "Item price must be $10 or less.  Please enter a new price."
 			render "new"
 		end
+		
+		
+			# if not successful go back to new page to reenter the data again
+			
 	end
 
 	def edit
 		# action for retrieving a specific been
 		# this is the same code you use for the show action
+		flash[:notice] = nil
 		@item = Item.find(params[:id])
 		@seller = Seller.new.username
 
@@ -55,17 +62,14 @@ class ItemsController < ApplicationController
 	def update
 		# this retrieves a specific item from database
 		@item = Item.find(params[:id])
-		# if @item.update_attributes(params.require(:item).permit(:name, :roast, :origin, :quantity))
-		# 	redirect_to items_path
-		# else
-		# 	render "edit"
-		# end
-
 		if @item.update_attributes(item_params)
-			redirect_to items_path
+		   flash[:notice] = nil
+		   redirect_to items_path
 		else
+			flash[:notice] = "Item price must be $10 or less.  Please enter a new price."
 			render "edit"
 		end
+		
 	end
 
 	def destroy
@@ -78,7 +82,7 @@ class ItemsController < ApplicationController
 private
 # anyting in this private area 
 	def item_params
-		params.require(:item).permit(:item_tag, :description, :photo, :category, :search_tags, :shipping_cost, :sold, :seller, :username)
+		params.require(:item).permit(:price, :item_tag, :description, :photo, :category, :search_tags, :shipping_cost, :sold, :seller, :username, :image)
 	end
 
 end
