@@ -2,6 +2,7 @@ class SellersController < ApplicationController
 	def index
 		# retrieves ALL the beans in our database
 		@sellers =Seller.all
+		
 	end
 
 	def show
@@ -65,7 +66,7 @@ class SellersController < ApplicationController
 private
 # anyting in this private area is only visible to this class
 	def seller_params
-		params.require(:seller).permit(:username, :password, :first_name, :last_name, :phone, :email)
+		params.require(:seller).permit(:username, :password, :first_name, :last_name, :phone, :email, :password)
 	end
 
 end

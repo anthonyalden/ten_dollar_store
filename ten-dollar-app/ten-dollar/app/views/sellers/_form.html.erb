@@ -1,10 +1,6 @@
 <%= form_for @seller do |f| %>
   <div>
-    <%= f.label "User Name"%>:
-    <%= f.text_field :username %>
 
-    <%= f.label :password %>:
-    <%= f.text_field :password %>
 
     <%= f.label :first_name %>:
     <%= f.text_field :first_name %>
@@ -16,7 +12,13 @@
     <%= f.text_field :phone %>
 
     <%= f.label :email %>:
-    <%= f.text_field :email %>
+    <%= f.text_field :email %><br><br>
+
+    <%= f.label "User Name"%>:
+    <%= f.text_field :username %>
+
+    <%= f.label :password %> 
+    <%= f.password_field :password %>
 
   </div>
   <div>
