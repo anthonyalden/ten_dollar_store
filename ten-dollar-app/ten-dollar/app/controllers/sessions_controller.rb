@@ -4,10 +4,10 @@ class SessionsController < ApplicationController
 	end
 
 	def create 
-		seller = Seller.find_by(username: params[:login][:username])
+		seller = Seller.where(username: params[:login][:username]).first
 		if seller && seller.authenticate(params[:login][:password])
 			session[:user_id] = seller.id.to_s 
-			redirect_to sellers_path 
+			redirect_to seller_path(seller.id) 
 		else 
 			redirect_to items_path
 

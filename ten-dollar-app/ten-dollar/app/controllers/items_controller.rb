@@ -4,15 +4,16 @@ class ItemsController < ApplicationController
 	
 
 	def index
-		# retrieves ALL the beans in our database
 
-			  is_seller = true
-		      @items = Item.where(:search_tags => /.*#{params[:q]}.*/i)
-			  if is_seller == false
-			  	render "buyerindex"
-			  else
-			  	render "index"
-			  end
+	      
+		  if logged_in? == false
+		  	@items = Item.where(:description => /.*#{params[:q]}.*/i)
+		  	render "buyerindex"
+		  else
+		  	# @items = current_user.items.where(:description => /.*#{params[:q]}.*/i $or :item_tag => /.*#{params[:q]}.*/i)
+		  	@items = current_user.items.where({ :$or => [ { :description => /.*#{params[:q]}.*/i }, { :item_tag => /.*#{params[:q]}.*/i } ] })
+		  	render "index"
+		  end
 		
 	end
 
@@ -35,8 +36,9 @@ class ItemsController < ApplicationController
 		#the params object has some methods like .requre and .permit.  The permit says what attributes can be saved
 		# :item is from the model
 		# @item = item.new(params.require(:item).permit(:name, :roast, :origin, :quantity))
-		@item = Item.new (item_params)
-
+		#@item = Item.new (item_params)
+		@item =current_user.items.new(item_params)
+		
 		if @item.save
 		   flash[:alert] = nil
 		   redirect_to items_path

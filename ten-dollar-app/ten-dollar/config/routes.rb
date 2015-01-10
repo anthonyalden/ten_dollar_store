@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
     resources :sellers
     resources :items
-  
+
     post '/login' => 'sessions#create' 
     delete '/logout' => 'sessions#destroy'
 

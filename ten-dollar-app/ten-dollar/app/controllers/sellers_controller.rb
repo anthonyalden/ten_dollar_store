@@ -6,11 +6,11 @@ class SellersController < ApplicationController
 	end
 
 	def show
-		# retrieves ONE specific bean in our database
+		# retrieves ONE specific seller in our database
 		# the parms refers to rails object with a key and object hash.  one of the hashes is an :id key.
 		#       :id comes from the url specifically the part that has the id specified in the routes
-		# Bean is our model
-		# .find is method available to our Bean model it comes from mongoid gem
+		# Seller is our model
+		# .find is method available to our Seller model it comes from mongoid gem
 		@seller = Seller.find(params[:id])
 	end
 
@@ -23,7 +23,6 @@ class SellersController < ApplicationController
 	def create
 		#the params object has some methods like .requre and .permit.  The permit says what attributes can be saved
 		# :seller is from the model
-		# @seller = seller.new(params.require(:seller).permit(:name, :roast, :origin, :quantity))
 				@seller = Seller.new (seller_params)
 				if @seller.save 
 					# if save is ok go back to index.html
@@ -37,7 +36,7 @@ class SellersController < ApplicationController
 	end
 
 	def edit
-		# action for retrieving a specific been
+		# action for retrieving a specific Seller
 		# this is the same code you use for the show action
 		flash[:notice] = nil
 		@seller = Seller.find(params[:id])
@@ -58,8 +57,11 @@ class SellersController < ApplicationController
 
 	def destroy
 		@seller = Seller.find(params[:id])
+		@items = Item.where(:seller_id => current_user)
+		@items.destroy
+		session.delete(:user_id)
 		@seller.destroy
-		redirect_to sellers_path
+		redirect_to items_path
 	end
 
 

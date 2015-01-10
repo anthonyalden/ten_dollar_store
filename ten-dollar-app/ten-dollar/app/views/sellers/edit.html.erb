@@ -11,3 +11,5 @@
 
 <%= render "sellers/form", object: @seller %>
 
+<%= link_to "Delete #{@seller.first_name} #{@seller.last_name}", seller_path(@seller), method: :delete, data: {confirm: "Are you sure you want to delete #{@seller.username}?"} %><br><br>
+

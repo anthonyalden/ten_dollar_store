@@ -1,16 +1,11 @@
 <div class="bill"></div>
-  
-<%= form_for :login, url: '/login' do |f| %>
+ 
 
-  <%= f.label :username %> 
-  <%= f.text_field :username %>
-  <%= f.label :password %> 
-  <%= f.password_field :password %>
-  <%= f.submit 'Log In' %>
-<% end %>
 
 
 <h3 id="tenstore">The Ten Dollar Store </h3>
+
+
 
 <%= form_tag({controller: "items", action: "index"}, method: "get") do %>
     <%= label_tag(:q, "Search for:") %>
@@ -19,22 +14,31 @@
 <% end %>
 <h4 id="search-msg">Leave search box empty and press <b>Search</b> to display all items for sale.</h4>
 
-<h3 id="title">Items for Sale:</h3>
 
+<% if logged_in? %>
+      <h2>Items listed for sale by: <%= current_user.first_name %> <%= current_user.last_name %></h2><br>
+<% else %>
+  <h2>User Logged Out</h2><br>
 
-<ul>
-  <% @items.each do |item| %>
-    <li>
+<% end %>
+<% if logged_in? %>
+    <ul>
 
-      <b>Price:</b> <%= number_to_currency(item.price) %>
-      <b>Item Tag:</b> <%= link_to item.item_tag, item %> 
-      <b>description:</b> <%= item.description %> <br>
-      
-      <b>Category:</b> <%= item.category %> <br>
-      <b>Search Tags:</b> <%= item.search_tags %> 
-      <b>Shipping Cost:</b> <%= number_to_currency(item.shipping_cost) %><br><br>
-      <%= image_tag item.image.url %><br><br>
-      <b>Seller:</b> Username: <%= item.seller.username%> Full Name: <%= item.seller.first_name%> <%= item.seller.last_name%>     <span><%= link_to "Edit", edit_item_path(item),{:style=>'color:red', :class => "css_class"} %></span>
-    </li><br>
+      <% @items.each do |item| %>
+        <li>
+
+          <b>Price:</b> <%= number_to_currency(item.price) %>
+          <div class="item-width"><b>Item:</b> <%= link_to item.item_tag, item %><div> 
+          <div class="item-width"><b>description:</b> <%= item.description %> <br></div>
+          
+          
+          <b>Shipping Cost:</b> <%= number_to_currency(item.shipping_cost) %><br><br>
+          <% if item.image.url != nil %>
+              <%= image_tag item.image.url, size: "100x100"%><br><br>
+          <% end %>  
+        </li>
+        <hr size ="8px" noshade>
+      <% end %>
+    </ul>
+
   <% end %>
-</ul>

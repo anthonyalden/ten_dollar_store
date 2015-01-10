@@ -27,7 +27,7 @@ body {
 }
 
 .bill{
-	background-image: url("ten_dollar_bill.jpg");
+	background-image: url(<%= image_path "ten_dollar_bill.jpg" %>);
 	background-repeat: no-repeat;
 	background-size: 300px;
 	height: 125px;
@@ -76,4 +76,8 @@ div:hover {
 	text-indent: 80px;
 	margin-top: -2px;
 
+}
+
+.item-width{
+	width: 75%;
 }
