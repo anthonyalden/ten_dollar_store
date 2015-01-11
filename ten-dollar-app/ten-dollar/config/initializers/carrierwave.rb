@@ -7,8 +7,11 @@ CarrierWave.configure do |config|
         #:host                  => nil,              # optional, defaults to nil
         #:endpoint              => nil               # optional, defaults to nil
     }
+    #required for Heroku
+    config.cache_dir = "#{Rails.root}/tmp/uploads"
+   
 
-    config.fog_directory   = ENV['AWS_S3_BUCKET']     # required
+    config.fog_directory   = ENV['S3_BUCKET']     # required
     #config.fog_public     = true          # optional, defaults to true
     #config.fog_attributes = {}            # optional, defaults to {}
 end

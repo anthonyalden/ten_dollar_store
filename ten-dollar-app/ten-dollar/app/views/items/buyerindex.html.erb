@@ -1,5 +1,7 @@
 
 <div class="bill"></div>
+  
+<div class="login">
   <%= form_for :login, url: '/login' do |f| %>
 
     <%= f.label :username %> 
@@ -8,6 +10,7 @@
     <%= f.password_field :password %>
     <%= f.submit 'Log In' %>
   <% end %>
+</div>
 <h3 id="tenstore">The Ten Dollar Store </h3>
 
 <%= form_tag({controller: "items", action: "index"}, method: "get") do %>
